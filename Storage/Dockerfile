@@ -61,6 +61,8 @@ if ! command -v sui &> /dev/null; then
 fi
 
 
+# Get WAL tokens if needed
+
 # Execute the command passed to docker run
 exec "\$@"
 EOF
@@ -72,7 +74,8 @@ ENV RUST_LOG=info
 
 # Expose common ports (adjust as needed)
 EXPOSE 9000
-
+EXPOSE 31415
+EXPOSE 31416
 # Verify installations
 RUN sui --version && walrus -V
 
@@ -80,4 +83,4 @@ RUN sui --version && walrus -V
 ENTRYPOINT ["/entrypoint.sh"]
 
 # Default command (can be overridden)
-CMD ["walrus", "--help"]
+CMD ["/bin/bash"]
